@@ -2,7 +2,6 @@ import 'package:get/get.dart';
 
 class LanguageTranslation extends Translations {
   @override
-  // TODO: implement keys
   Map<String, Map<String, String>> get keys => {
         'en_US': {
           'title': 'Easy Language Translations',
@@ -34,7 +33,7 @@ class LanguageTranslation extends Translations {
           'appbar2': 'Nur testen',
           'test_text': 'Dies ist nur ein nutzloser Bildschirm zum Testen',
         },
-        '	vi_VN': {
+        'vi_VN': {
           'title': 'Bản dịch ngôn ngữ dễ dàng',
           'subtitle':
               'Văn bản này sẽ tự động được dịch sang ngôn ngữ thích hợp',
