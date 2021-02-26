@@ -1,6 +1,50 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class Home extends StatelessWidget {
+  final locales = [
+    {'name': 'English', 'locale': Locale('en', 'US')},
+    {'name': 'Hindi', 'locale': Locale('hi', 'IN')},
+    {'name': 'German', 'locale': Locale('de', 'DE')},
+    {'name': 'Vietnamese', 'locale': Locale('vi', 'VN')},
+  ];
+
+  showLocaleDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (_) => AlertDialog(
+              title: Text(
+                'Choose your Language',
+              ),
+              content: Container(
+                width: double.maxFinite,
+                child: ListView.separated(
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) => InkWell(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(vertical: 8),
+                      child: Text(
+                        locales[index]['name'],
+                      ),
+                    ),
+                    onTap: () {
+                      updateLocale(locales[index]['locales'], context);
+                    },
+                  ),
+                  separatorBuilder: (context, index) => Divider(
+                    color: Colors.black,
+                  ),
+                  itemCount: 4,
+                ),
+              ),
+            ));
+  }
+
+  updateLocale(Locale locale, BuildContext context) {
+    Navigator.of(context).pop();
+    Get.updateLocale(locale);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,7 +79,7 @@ class Home extends StatelessWidget {
                 ),
                 color: Colors.indigo,
                 textColor: Colors.white,
-                onPressed: () => {},
+                onPressed: () => showLocaleDialog(context),
               ),
               SizedBox(height: 24),
               FlatButton(
